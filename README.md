@@ -6,86 +6,180 @@
 ``` 
 TODO: 
 
-1. Create negative and positive scenarios in DigitalBankRegistration.feature file 
-based on the given requirements for Login and Account Creation functionalities.
+1. Come up with all possible negative and positive scenarios 
+based on the given requirements for Bank Account functionalities.
 Practice scenario/scenario outlines with example tables
-2. Implement your scenarios in DigitalBankRegistrationSteps class. 
-3. Implement Driver class based on given requirements in the class.
-4. Implement MockData class based on given requirements in the class.
-5. Use best practices to locate a webelemnets using:
+2. Create DigitalBankBankingAccountsSteps class and implement your scenarios
+3. Create and Implement Runner class
+4. Create and Implement a BrowserHelper class to store reusable methods
+5. After completing automation script, implement cucumber-reporting
+6. Use best practices to locate a webelemnets using:
  - Id locator
  - Name locator
  - linkText & Partial linkText
  - CSS Selector
  - XPath
+
+Prerequisites: 
+Create a new user for each group
 ```
      
-### Login Requirements:
+## BANKING ACCOUNTS Requirements:
  
-  User Navigates to Digital Bank login page: http://dbankdemo.com/login
-  
-A. Fill out login credential:
-* The customer will enter the following information to login UserName(Email address) and Password
-* The customer will be presented with a screen asking for email address and password.
-* The UI will present an error message if any credentials are invalid.
-* Verify that username and password fields are displayed in the UI.
-* Verify that 'Sign Up Here' link is displayed in Login Page 
+ #### CHECKING ACCOUNT
 
-
-B. Submit login credentials:
+ ----
  
-* The customer will be able to click submit button
-* If form is empty and user clicks submit, UI will present an error message "Invalid credentials or access not granted."
-
-C. Error message for invalid credentials:
-* The UI will present a generic error message for invalid credentials
-* Email VALID, password INVALID:  Message: Invalid credentials or access not granted.
-* Email INVALID, password VALID: Message: Invalid credentials or access not granted.
-* Email INVALID, password INVALID: Message: Invalid credentials or access not granted.
-* Email VALID, password VALID: Message: Access granted. .User redirected to Digital Bank Home page
-
-
-
-
----------
----------
-### Account Creation Requirements:
-
-User Navigates to Digital Bank login page: http://dbankdemo.com/signup
-
-A. Fill out account creation fileds:
-* Title: Dropdown. Selection options: Mr., Ms., Mrs.
-* First name: Input field.
-* Last name: Input field.
-* Gender: Radio button. Options: M, F
-* Date of Birth: Input Filed. ex. MM/DD/YYYY
-* Social security number: ex. 123-45-6789 SSN should be unique for each account. 
-* Email address: ex. user@gmail.com. Email address should be unique for each account. 
-* Password: Input field. Password must contain at least one number, and one uppercase and lowercase letter,
- and at least 8 or more characters.
-* Confirm Password:  Input field. Password should match with the input in Password field.
+ #### User Story #1: 
  
- After completing first part of account creation, .User will be redirected to second part to fill out Address information.
- 
-* Address: Input field. ex. 123 Digital Lane
-* Locality: Input field. ex. Internet City
-* Region: Input field. ex. CA
-* Postal Code: Input field. ex. 92192
-* Country: Input field. ex. US
-* Home Phone: Input field. ex. (547) 392-5436
-* Moble Phone: Input field. ex. (547) 392-5436
-* Work Phone: Input field. ex. (547) 392-5436
+>As a user, I want to be able to view all details in my account home page.
 
-After .User filled out Address and Contact information, 
-.User should accept: Agree the terms and policy (check the checkbox)
-And .User should click on Register button
-Then .User should be redirected to register page: http://dbankdemo.com/register
-And .User should see "Success Registration Successful. Please Login." message
-And .User should enter valid Password and Sign in 
+* Functionalities:
+1. Display message "Welcome (First_name) on the right top header.
+2. Display a panel with account information: 
+- Home title
+- BANKING ACCOUNTS title: with the following items: Checking, Saving, Transactions
+- CREDIT ACCOUNTS title: with the following items: Digital Credit
+- TRANSFERS / PAYMENTS title: with the following items: Transfer
+- 3RD PARTY TRANSFERS title: with the following items: VISA Direct
+----
+ #### User Story #2: 
+>As a User,
+I want have the ability to create a new Checking bank account
+so that my payment can be processed from my preferred account.
+>
+
+Functionalities:
+1. Display Checking field under BANKING ACCOUNTS section, 
+clicking on 'Checking' dropdown should be displayed with following options: View Checking, New Checking
+2. Clicking on 'New Checking' option, should redirect user to "http://dbankdemo.com/account/checking-add" 
+(Note: Click on 'New Checking' and try to open it in new tab)
+3. Display a header "New Checking Account"
+4. Display a label "Select Checking Account Type" with the following radio button options:
+  Standard Checking, Interest Checking  
+  - All Radio buttons should be unchecked by default  
+5. Display a label "Select Account Ownership" with the following radio button options: Individual, Joint 
+  - All Radio buttons should be unchecked by default  
+6. Display an Input filed "Account Name". 
+- Accepts alphanumeric and special characters.
+6. Display an Input filed "Initial Deposit Amount"
+- Minimum opening deposit is $25.00. Accepts numeric whole or decimal values.
+7. Display 'Submit' button, clicking on it should successfully create an account
+ and user will be redirected to page to view checking account.
+8. Display 'Reset' button, clicking on it should reset all filled values to default state.
 
 
+Logic:
+
+If any of the following conditions are triggered, it should throw an Error Msg. 
+* Rule 1: Unselected Account Type: 
+ Logic: Account Type options are not selected.
+Error Msg: "Please select one of these options."
+* Rule 2: Unselected Account Ownership: 
+ Logic: Account Ownership options are not selected.
+Error Msg: "Please select one of these options."
+* Rule 3: Empty Account Name: 
+ Logic: Clicking submit button with an empty Account Name.
+Error Msg: "Please fill out this field."
+* Rule 4: Empty Initial Deposit Amount: 
+ Logic: Clicking submit button with an empty Initial Deposit Amount.
+Error Msg: "Please fill out this field."
+* Rule 5: Invalid Initial Deposit Amount: 
+ Logic: Clicking submit button with an invalid Initial Deposit Amount.
+Error Msg: "Please match the requested format."
+* Rule 6: Minimum Initial Deposit Amount: 
+ Logic: Clicking submit button with Initial Deposit Amount less than a minimum amount.
+Error Msg: "The initial deposit ($enteredAmount) entered does not meet the minimum amount ($25.00) required. Please enter a valid deposit amount."
+
+---
+ #### User Story #3: 
+>As a User,
+I want to have the ability to view all my Checking bank account
+so that I can manage my accounts and see account balance and transactions.
+>
+
+Functionalities:
+1. After User creates a new checking account, user should be able to view checking account information.
+All information should match the entered values during the submition of checking account.
+2. Display "Transactions" table with all transaction details: 
+- Display header "Date": Date and time when transaction happened. 
+- Display header "Category": What kind of transaction was made: Income, Misc etc
+- Display header "Description": Displays transaction id and type of Transaction
+- Display header "Amount": Displays the amount of made transaction
+- Display header "Balance": Displays balance amount, after each transaction
+3. If User has more than 1 checking accounts, only one of the accounts can be Actived: 
+- Display ON/OFF toggle button on each Checking account
+- Display transaction history for a particular checking account if it is Activated(ON)
+
+ #### SAVINGS ACCOUNT
+
+#### User Story #4: 
+>As a User,
+I want have the ability to create a new Savings bank account
+so that my payment can be processed from my preferred account.
+>
+
+Functionalities:
+1. Display Checking field under BANKING ACCOUNTS section, 
+clicking on 'Savings' dropdown should be displayed with following options: View Savings, New Savings
+2. Clicking on 'New Savings' option, should redirect user to "http://dbankdemo.com/account/savings-add"
+(Note: Click on 'New Savings' and try to open it in new tab)
+3. Display a header "New Savings Account"
+4. Display a label "Select Savings Account Type" with the following radio button options:
+  Savings, Money Market     
+  - All Radio buttons should be unchecked by default  
+5. Display a label "Select Account Ownership" with the following radio button options: Individual, Joint 
+  - All Radio buttons should be unchecked by default  
+6. Display an Input filed "Account Name". 
+- Accepts alphanumeric and special characters.
+6. Display an Input filed "Initial Deposit Amount"
+- Minimum opening deposit is $2500.00. Accepts numeric whole or decimal values.
+7. Display 'Submit' button, clicking on it should successfully create an account
+ and user will be redirected to page to view saving account.
+8. Display 'Reset' button, clicking on it should reset all filled values to default state.
 
 
+Logic:
+
+If any of the following conditions are triggered, it should throw an Error Msg. 
+* Rule 1: Unselected Account Type: 
+ Logic: Account Type options are not selected.
+Error Msg: "Please select one of these options."
+* Rule 2: Unselected Account Ownership: 
+ Logic: Account Ownership options are not selected.
+Error Msg: "Please select one of these options."
+* Rule 3: Empty Account Name: 
+ Logic: Clicking submit button with an empty Account Name.
+Error Msg: "Please fill out these field."
+* Rule 4: Empty Initial Deposit Amount: 
+ Logic: Clicking submit button with an empty Initial Deposit Amount.
+Error Msg: "Please fill out these field."
+* Rule 5: Invalid Initial Deposit Amount: 
+ Logic: Clicking submit button with an invalid Initial Deposit Amount.
+Error Msg: "Please match the requested format."
+* Rule 6: Minimum Initial Deposit Amount: 
+ Logic: Clicking submit button with Initial Deposit Amount less than a minimum amount.
+Error Msg: "TThe initial deposit ($enteredAmount) entered does not meet the minimum amount ($2500.00) required. Please enter a valid deposit amount."
+
+---
+ #### User Story #5: 
+>As a User,
+I want to have the ability to view all my Savings bank account
+so that I can manage my accounts and see account balance and transactions.
+>
+
+Functionalities:
+1. After User creates a new savings account, user should be able to view savings account information.
+All information should match the entered values during the submission of savings account.
+2. Display "Transactions" table with all transaction details: 
+- Display header "Date": Date and time when transaction happened. 
+- Display header "Category": What kind of transaction was made: Income, Misc etc
+- Display header "Description": Displays transaction id and type of Transaction
+- Display header "Amount": Displays the amount of made transaction
+- Display header "Balance": Displays balance amount, after each transaction
+3. If User has more than 1 checking accounts, only one of the accounts can be Actived: 
+- Display ON/OFF toggle button on each Savings account
+- Display transaction history for a particular checking account if it is Activated(ON)
 
 
 

@@ -32,13 +32,13 @@ public class DigitalBankRegistrationSteps {
     public void user_navigates_to_Digital_Bank_login_page() throws Throwable {
         driver = Driver.getDriver();
         driver.get(LOGIN_PAGE_URL);
-        assertEquals(LOGIN_PAGE_URL, driver.getCurrentUrl());
+        assertEquals("Failed: URL mismatch",LOGIN_PAGE_URL, driver.getCurrentUrl());
     }
 
     @Given("^Verify that web title is \"([^\"]*)\"$")
     public void verify_that_web_title_is(String expectedTitle) throws Throwable {
 
-        assertEquals(expectedTitle, driver.getTitle());
+        assertEquals("Failed: Title mismatch",expectedTitle, driver.getTitle());
 
     }
 
@@ -57,7 +57,7 @@ public class DigitalBankRegistrationSteps {
 
     @Then("^User successfully logged in to home page$")
     public void user_successfully_logged_in_to_home_page() throws Throwable {
-        assertEquals(HOME_PAGE_URL, driver.getCurrentUrl());
+        assertEquals("Failed: URL mismatch",HOME_PAGE_URL, driver.getCurrentUrl());
     }
 
     @Then("^User should be displayed with the error message \"([^\"]*)\"$")
@@ -67,7 +67,7 @@ public class DigitalBankRegistrationSteps {
         assertTrue(error.isDisplayed());
         String actualErrorMessage = error.getText().trim().replaceAll("\\n", "").replace("×", "");
 
-        assertEquals(expectedErrorMessage, actualErrorMessage);
+        assertEquals("Failed: Error message mismatch",expectedErrorMessage, actualErrorMessage);
 
     }
 
@@ -89,7 +89,7 @@ public class DigitalBankRegistrationSteps {
 
         driver = Driver.getDriver();
         driver.get(SIGNUP_PAGE_URL);
-        assertEquals(SIGNUP_PAGE_URL, driver.getCurrentUrl());
+        assertEquals("Failed: URL mismatch",SIGNUP_PAGE_URL, driver.getCurrentUrl());
     }
 
     @When("^User creates account with following fields$")
@@ -160,8 +160,9 @@ public class DigitalBankRegistrationSteps {
     public void userShouldBeDisplayedWithTheMessage(String expectedMessage) throws Throwable {
 
         WebElement message = driver.findElement(By.xpath("//div[@class='sufee-alert alert with-close alert-success alert-dismissible fade show']//span[2]"));
-        assertEquals(expectedMessage,message.getText().trim());
+        assertEquals("Failed: Error message mismatch",expectedMessage,message.getText().trim());
     }
+
 
 }
 
