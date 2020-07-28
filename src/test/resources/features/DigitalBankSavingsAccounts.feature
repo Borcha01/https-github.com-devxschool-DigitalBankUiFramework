@@ -1,13 +1,14 @@
 @regression
 Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
-
-
-  Scenario: As a User, I want have the ability to create a new Savings bank account so that my payment can be processed from my preferred account.
-
+Background:
     Given User navigates to Digital Bank login page
     And Verify that web title is "Digital Bank"
     When User logs in with "JohnDoe@testemail.com " and "Password1"
     Then User successfully logged in to home page
+
+  Scenario: As a User, I want have the ability to create a new Savings bank account so that my payment can be processed from my preferred account.
+
+
     And Verify that "Welcome John" welcoming message is displayed
     And Verify that "Savings" dropdown has following options
       | View Savings |
@@ -15,10 +16,6 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
 
 
   Scenario: Savings account page validations
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    When User logs in with "JohnDoe@testemail.com " and "Password1"
-    Then User successfully logged in to home page
     When User clicks on "Savings" account
     Then Verify "New Savings Account" header is displayed
     And  Verify "Select Checking Account Type" label is displayed
@@ -30,50 +27,35 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
     And Verify that "Reset" button is displayed
 
   Scenario: Savings account page validations without account type
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    And User logs in with "JohnDoe@testemail.com " and "Password1"
-    And User successfully logged in to home page
+
     When User clicks on "Savings" account
     When User submits an account without Account Type
     Then Verify field error message "Please select one of these options." is displayed
 
 
   Scenario: Savings account page validations without account ownership
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    And User logs in with "JohnDoe@testemail.com " and "Password1"
-    And User successfully logged in to home page
+
     When User clicks on "Savings" account
     When User submits an account without Account Ownership
     Then Verify field error message "Please select one of these options." is displayed
 
 
   Scenario: Savings account page validations without account name
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    And User logs in with "JohnDoe@testemail.com " and "Password1"
-    And User successfully logged in to home page
+
     When User clicks on "Savings" account
     When User submits an account without Account Name
     Then Verify field error message "Please fill out this field." is displayed
 
 
   Scenario: Savings account page validations without account deposit
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    And User logs in with "JohnDoe@testemail.com " and "Password1"
-    And User successfully logged in to home page
+
     When User clicks on "Savings" account
     When User submits an account without Initial Deposit Amount
     Then Verify field error message "Please fill out this field." is displayed
 
 
   Scenario Outline: Savings account page validations with Invalid account deposit
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    And User logs in with "JohnDoe@testemail.com " and "Password1"
-    And User successfully logged in to home page
+
     When User clicks on "Savings" account
     When User submits an account with "<deposit>" deposit
     Then Verify field error message "<errorMsg>" is displayed
@@ -84,10 +66,7 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
       | 200,33  | Please match the requested format. |
 
   Scenario Outline: Savings account page validations with less then minimum account deposit
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    And User logs in with "JohnDoe@testemail.com " and "Password1"
-    And User successfully logged in to home page
+
     When User clicks on "Savings" account
     When User submits an account with "<deposit>" deposit
     Then Verify alert error message "The initial deposit ($<deposit>) entered does not meet the minimum amount ($2500.00) required. Please enter a valid deposit amount." is displayed
@@ -96,10 +75,7 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
       | 150.22  |
 
   Scenario: Create a Savings account with valid data
-    Given User navigates to Digital Bank login page
-    And Verify that web title is "Digital Bank"
-    And User logs in with "JohnDoe@testemail.com " and "Password1"
-    And User successfully logged in to home page
+
     When User clicks on "Savings" account
     When User creates "Savings" account with following info:
       | accountType  | accountOwnership | accountName  | initialDeposit |

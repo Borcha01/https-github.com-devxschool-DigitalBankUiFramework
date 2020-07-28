@@ -50,4 +50,14 @@ public class BrowserHelper {
         }
         return false;
     }
+
+     /**
+     * Create a WebDriver helper method that performs JavascriptExecutor click operation
+     */
+    public  static void jsClick(WebDriver driver,WebElement element){
+        //TODO: Implement here:
+
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
 }
