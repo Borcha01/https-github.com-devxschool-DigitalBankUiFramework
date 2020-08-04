@@ -1,4 +1,4 @@
-@regression
+@regression @checking
 Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
 
   Background: Log in to Digital Bank
@@ -6,6 +6,7 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
     And Verify that web title is "Digital Bank"
     When User logs in with "JohnDoe@testemail.com " and "Password1"
     Then User successfully logged in to home page
+
 
   Scenario: As a user, I want to be able to view all details in my account home page.
     And Verify that "Welcome John" welcoming message is displayed
@@ -53,25 +54,25 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
   Scenario: Checking account page validations without account ownership
 
     And User clicks on "Checking" account
-    When User submits an account without Account Ownership
+    When User submits checking account without Account Ownership
     Then Verify field error message "Please select one of these options." is displayed
 
   Scenario: Checking account page validations without account name
 
     And User clicks on "Checking" account
-    When User submits an account without Account Name
+    When User submits checking account without Account Name
     Then Verify field error message "Please fill out this field." is displayed
 
   Scenario: Checking account page validations without account deposit
 
     And User clicks on "Checking" account
-    When User submits an account without Initial Deposit Amount
+    When User submits checking account without Initial Deposit Amount
     Then Verify field error message "Please fill out this field." is displayed
 
   Scenario Outline: Checking account page validations with Invalid account deposit
 
     And User clicks on "Checking" account
-    When User submits an account with "<deposit>" deposit
+    When User submits checking account with "<deposit>" deposit
     Then Verify field error message "<errorMsg>" is displayed
     Examples:
       | deposit | errorMsg                           |
@@ -82,7 +83,7 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
   Scenario Outline: Checking account page validations with less then minimum account deposit
 
     And User clicks on "Checking" account
-    When User submits an account with "<deposit>" deposit
+    When User submits checking account with "<deposit>" deposit
     Then Verify alert error message "The initial deposit ($<deposit>) entered does not meet the minimum amount ($25.00) required. Please enter a valid deposit amount." is displayed
     Examples:
       | deposit |
@@ -90,9 +91,9 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
 
   Scenario: Create a checking account with valid data
     And User clicks on "Checking" account
-    When User creates "Checking" account with following info:
-      | accountType       | accountOwnership | accountName  | initialDeposit |
-      | Interest Checking | Joint            | Test Account | 200            |
+    When User creates Checking account with following info:
+      | accountType       | accountOwnership | accountName   | initialDeposit |
+      | Interest Checking | Joint            | CheckingAccount1 | 200            |
     Then Verify newly created account information
 
 

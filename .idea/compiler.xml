@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DigitalBank" />
         <module name="SeleniumCucumberFramework" />
+        <module name="DigitalBank" />
+        <module name="DigitalBankUiFramework" />
       </profile>
     </annotationProcessing>
   </component>

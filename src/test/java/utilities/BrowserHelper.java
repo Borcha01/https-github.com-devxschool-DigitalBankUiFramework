@@ -60,4 +60,6 @@ public class BrowserHelper {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
+
+
 }
