@@ -25,7 +25,7 @@ import static org.junit.Assert.assertTrue;
  * Add implementations of steps from feature file
  */
 public class DigitalBankRegistrationSteps {
-    private WebDriver driver = Driver.getDriver();
+    private WebDriver driver = Hooks.driver;
     private final DigitalBankLoginPage bankLoginPage = new DigitalBankLoginPage(driver);
     private final DigitalBankSignUpPage bankSignUpPage = new DigitalBankSignUpPage(driver);
 

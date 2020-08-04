@@ -21,7 +21,7 @@ import java.util.List;
 
 public class DigitalBankCheckingAccountSteps {
 
-    private final WebDriver driver = Driver.getDriver();
+    private final WebDriver driver = Hooks.driver;
     private List<BankAccount> accountInfo;
     private DigitalBankHomePage bankHomePage = new DigitalBankHomePage(driver);
     private DigitalBankCheckingPage bankCheckingPage = new DigitalBankCheckingPage(driver);

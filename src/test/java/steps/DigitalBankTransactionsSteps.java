@@ -21,10 +21,11 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class DigitalBankTransactionsSteps {
-    private final WebDriver driver = Driver.getDriver();
+    private final WebDriver driver = Hooks.driver;
     private DigitalBankHomePage bankHomePage = new DigitalBankHomePage(driver);
     private DigitalBankTransactionsPage bankTransactionsPage = new DigitalBankTransactionsPage(driver);
     private AccountInfo accountInfo= new AccountInfo();
+
     @Given("^User navigates to Deposit page$")
     public void userNavigatesToDepositPage() {
         bankHomePage.transactionsLink.click();

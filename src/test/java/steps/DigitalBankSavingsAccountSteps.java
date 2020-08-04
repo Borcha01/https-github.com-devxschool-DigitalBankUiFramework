@@ -17,7 +17,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class DigitalBankSavingsAccountSteps {
-        private final WebDriver driver = Driver.getDriver();
+        private final WebDriver driver = Hooks.driver;
         private DigitalBankSavingsPage savingsPage = new DigitalBankSavingsPage(driver);
         private List<BankAccount> accountInfo;
 
