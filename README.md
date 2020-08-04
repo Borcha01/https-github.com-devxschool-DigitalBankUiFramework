@@ -11,8 +11,10 @@ TODO:
 2. Create and Implement Configuration class that reaads properties file
  - Create properties file and store parameters as key-value pairs, outside of compiled code.
 3. Implement Hooks class with @Before , @After methods
-4. Implement getDriver Method  in Driver class based on the driver specified in properties file. Create additional conditions for
+4. Implement: 
+ - getDriver() Method in Driver class based on the driver specified in properties file. Create additional conditions for
    chrome, firefox, safari, ie drivers  
+-  getHeadlessChromeDriver() mehtod for headless execution
 5. Create a method in Driver class that quits the driver
    which should check if instance is already instantiated once
 6. Create a method in Driver class that takes screenshot

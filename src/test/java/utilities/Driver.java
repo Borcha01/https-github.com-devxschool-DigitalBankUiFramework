@@ -1,11 +1,14 @@
 package utilities;
 
 import cucumber.api.Scenario;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -51,6 +54,24 @@ public class Driver {
         return driver;
 
     }
+
+    /**
+     * Create a method getHeadlessChromeDriver() that returns an instance of chrome driver, running headless
+     * @return driver
+     */
+    public static WebDriver getHeadlessChromeDriver() {
+
+        ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--window-size=1920,1080");
+		options.addArguments("--disable-extensions");
+		options.setExperimentalOption("useAutomationExtension", false);
+		options.addArguments("--proxy-server='direct://'");
+		options.addArguments("--proxy-bypass-list=*");
+		options.addArguments("--start-maximized");
+		options.addArguments("--headless");
+		return driver = new ChromeDriver(options);
+	}
 
     /**
      * Create a method that takes a screenshot in case scenario fails

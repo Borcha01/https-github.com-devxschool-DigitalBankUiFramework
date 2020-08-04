@@ -14,7 +14,7 @@ public class Hooks {
      */
     @Before()
     public void setUpDriver(){
-       driver=Driver.getDriver();
+       driver=Driver.getHeadlessChromeDriver();
     }
 
 
