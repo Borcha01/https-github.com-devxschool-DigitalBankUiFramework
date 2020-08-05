@@ -1,12 +1,12 @@
 @regression
 Feature: Digital Bank Transactions
+
   Background: Login to Digital Bank
     Given User navigates to Digital Bank login page
     And Verify that web title is "Digital Bank"
     When User logs in with "Elaine8772@testemail.com" and "Tester123"
     Then User successfully logged in to home page
 
-    @test
   Scenario: Submitting deposit without account
     Given User navigates to Deposit page
     When User User submits a deposit without selected account
